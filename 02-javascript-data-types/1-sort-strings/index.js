@@ -5,12 +5,23 @@
  * @returns {string[]}
  */
 export function sortStrings(arr, param = 'asc') {
-  return param === 'asc' ?  arr
-                              .slice()
-                              .sort( (a, b) => a.localeCompare( b, undefined, { caseFirst: "upper"} ) ) :
-                            arr
-                              .slice()
-                              .sort( (a, b) => b.localeCompare( a, undefined, { caseFirst: "upper"} ) );
+  switch (param) {
+    case 'asc':
+      return sortInParamOrder(arr, 1);
+      break;
+    case 'desc':
+      return sortInParamOrder(arr, -1);
+      break;
+    default:
+      return sortInParamOrder(arr, 1);
+  }
+
+  function sortInParamOrder(arr, order) {
+      return [...arr].sort((a, b) => order * a.localeCompare(b, undefined, { caseFirst: "upper" }));
+
+  }
 }
+
+
 
 

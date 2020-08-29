@@ -10,5 +10,6 @@ export const pick = (obj, ...fields) => {
           .filter( ([key, value]) => fields.includes(key)) )
 
     return returnedObject;
+
 };
 
