@@ -6,8 +6,6 @@
 export function createGetter(path) {
 
   const array = path.split(".");
-  let counter = 0;
-
 
   return function (obj) {
     let result;
@@ -15,17 +13,15 @@ export function createGetter(path) {
 
     // recursion function
     function findFieldInObject(obj) {
-      let nameOfFieldInObject = array[counter]
-
+      let nameOfFieldInObject = array.shift();
 
       if (Object.keys(obj).includes(nameOfFieldInObject)) {
-        if (counter === array.length - 1) {
+        if (array.length == 0) {
           result = obj[nameOfFieldInObject];
         } else {
-          counter++;
           findFieldInObject(obj[nameOfFieldInObject])
         }
-      }
+      } else { return;}
     }
 
     return result;
