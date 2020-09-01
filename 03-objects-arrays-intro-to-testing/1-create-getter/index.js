@@ -5,4 +5,26 @@
  */
 export function createGetter(path) {
 
+  const array = path.split(".");
+
+  return function (obj) {
+    let result;
+    findFieldInObject(obj);
+
+    // recursion function
+    function findFieldInObject(obj) {
+      let nameOfFieldInObject = array.shift();
+
+      if (Object.keys(obj).includes(nameOfFieldInObject)) {
+        if (array.length == 0) {
+          result = obj[nameOfFieldInObject];
+        } else {
+          findFieldInObject(obj[nameOfFieldInObject])
+        }
+      } else { return;}
+    }
+
+    return result;
+  };
+
 }
