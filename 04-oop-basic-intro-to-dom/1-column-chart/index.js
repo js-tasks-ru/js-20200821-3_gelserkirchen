@@ -17,7 +17,6 @@ export default class ColumnChart {
     this.subElements = {};
 
     this.render();
-
   }
 
 
